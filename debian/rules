@@ -1,0 +1,20 @@
+#!/usr/bin/make -f
+
+# The test suite requires pytest-runner, not packaged yet for Debian,
+# so it can't be enabled.
+export PYBUILD_DISABLE=test
+export PYBUILD_NAME=jwt
+
+export PYTHONWARNINGS=d
+
+%:
+	dh $@ --with python2,python3 --buildsystem=pybuild
+
+override_dh_auto_build:
+	dh_auto_build
+	cp debian/jwt.1 debian/jwt3.1
+	sed -i 's/jwt/jwt3/g' debian/jwt3.1
+
+override_dh_auto_install:
+	dh_auto_install
+	mv debian/python3-jwt/usr/bin/jwt debian/python3-jwt/usr/bin/jwt3

@@ -1,0 +1,17 @@
+Description: Remove pytest-runner form setup_requires since it's not packaged
+ for Debian yet.
+Author: Daniele Tricoli <eriol@mornie.org>
+Forwarded: not-needed
+Last-Update: 2015-06-30
+
+--- a/setup.py
++++ b/setup.py
+@@ -61,7 +61,7 @@
+         'Topic :: Utilities',
+     ],
+     test_suite='tests',
+-    setup_requires=['pytest-runner'],
++    setup_requires=[],
+     tests_require=tests_require,
+     extras_require=dict(
+         test=tests_require,
